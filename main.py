@@ -182,39 +182,26 @@ def parse_help_call(args):
             return args
 
 
-def foo(objs):
+def none_type_open(objs):
     num = 0
-    rad = []
+    sites_li = []
     for n, i in enumerate(objs):
         # print("Type:", i.name)
         for _, s in enumerate(zip(i.desc, i.sites)):
-            rad.append(s[1])
+            sites_li.append(s[1])
             # print('\t', num, ' , '.join(s))
             num += 1
-    return rad
-    # print('we are', rad, 'number 1')
+    return sites_li
 
 
-# what functions do i need?
-# help
-# call all
-# call some
-# error checking/ data converting
-# Advanced
-# add more stuff
-# add types for each link
-# have a list of new links that open at start
 
 # add functionality to search some sites
-
 # have help and all, take args for type and other things
 
 def main_loop(objs):
     run = True
     prompt = ">>>"
     curr_type = None
-    # when type is implemented this loop needs to run in the context of that type
-    # type can be a class and this instances can be in a list and that object can be loaded from a list
     while run:
 
         arg = input(prompt).lower()
@@ -292,7 +279,7 @@ def main_loop(objs):
             quit()
         # can use code as a kwarg for quit to have a exit code and a red error msg
 
-        elif curr_type is None and (open_sites := validate_data(arg, (site_li := foo(objs)))):
+        elif (open_sites := validate_data(arg, (site_li := none_type_open(objs)))) and curr_type is None:
             if open_sites == -1:
                 call_error(arg, ' was not given in the correct syntax or the correct range ', "The command ")
             else:
@@ -314,8 +301,7 @@ def main_loop(objs):
 
 
 if __name__ == '__main__':
-    print('Open Default 1.5.2 (tags/v2.1:6f8c832, Jul 27 2020, 20:27:19)')
+    print('Open Default 1.5.2 (tags/v2.1:6f8c832, Jul 27 2020, 20:27:44 -0400)')
     print('Type "help" or "copyright" for more information.')
     obj = setup(source)
-    # print(obj)
     main_loop(obj)

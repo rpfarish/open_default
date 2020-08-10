@@ -1,11 +1,10 @@
-
-mytype{
-Chillstep 24/7 Music Livestream,https://www.youtube.com/watch?v=dvwdUjU8VJU
+fav{
+Chillstep 24/7 Music Livestream,https://www.youtube.com/watch?v=vCdVaZlZ524
 MyFitnessPal: Log food,https://www.myfitnesspal.com/food/diary
 Pathfinding Visualizer on Github,https://github.com/rpfarish/pathfinder/
 }
 
-mysecondtype{
-Googles,https://google.com
+searches{
+Google,https://www.google.com
 }
 
