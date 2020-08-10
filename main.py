@@ -109,6 +109,11 @@ def call_some(num, sites):
         webbrowser.open(sites[site])
 
 
+def call_some_none(num, sites):
+    print(f"Opening {[sites[i][0] for i in num]}...")
+    for site in num:
+        webbrowser.open(sites[site][1])
+
 def site_help(desc, sites):
     for num, _site in enumerate(zip(desc, sites)):
         print(f"\t{num}: {_site}")
@@ -132,7 +137,7 @@ def data_in_range(nums, data):
 
 
 def validate_data(nums, data):
-    if data == -1:
+    if data == -1 or nums.startswith(','):
         return -1
     # Data is Num/convert to cleaned num str
     new = []
@@ -188,7 +193,7 @@ def none_type_open(objs):
     for n, i in enumerate(objs):
         # print("Type:", i.name)
         for _, s in enumerate(zip(i.desc, i.sites)):
-            sites_li.append(s[1])
+            sites_li.append(s)
             # print('\t', num, ' , '.join(s))
             num += 1
     return sites_li
@@ -210,6 +215,10 @@ def main_loop(objs):
             continue
         if arg == 'restart':
             print('-' * 20, 'RESTART', '-' * 20)
+        if arg == 'types':
+            print('All available types:')
+            print('\t', ', '.join(i.name for i in Dbtype.types))
+            continue
         if type_call := parse_help_call(arg):
             if 'all' in type_call:
                 print('opens all of the specified type')
@@ -231,6 +240,9 @@ def main_loop(objs):
                 print("If you want to go back to no type enter 'type none'")
                 continue
 
+            elif 'types' in type_call:
+                print('Shows all available types')
+                continue
             if curr_type is None:
                 num = 0
                 for n, i in enumerate(objs):
@@ -244,11 +256,12 @@ def main_loop(objs):
                         print("Type:", i.name)
                         for num, s in enumerate(zip(i.desc, i.sites)):
                             print('\t', num, ', '.join(s))
-            print('all\t\t       Opens all links')
+            print('all\t\t   Opens all links')
             print('copyright\t   Prints the copyright')
             print('help\t\t   Gives info based on current context')
-            print('restart\t\tRestarts the program and reloads from the file')
+            print('restart\t\t   Restarts the program and reloads from the file')
             print('type\t\t   Changes current type name')
+            print('types\t\t   Shows all available types')
             print('quit\t\t   Exits the program')
 
             print()
@@ -283,11 +296,10 @@ def main_loop(objs):
             if open_sites == -1:
                 call_error(arg, ' was not given in the correct syntax or the correct range ', "The command ")
             else:
-                call_some(open_sites, site_li)
+                call_some_none(open_sites, site_li)
             continue
         # clean and check data
         elif open_sites := validate_data(arg, Dbtype.get_sites_by_name(curr_type)):
-            print(open_sites, Dbtype.get_sites_by_name(curr_type))
             if open_sites == -1:
                 call_error(arg, ' was not given in the correct syntax or the correct range ', "The command ")
 
