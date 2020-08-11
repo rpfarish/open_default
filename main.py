@@ -78,13 +78,11 @@ def setup(file):
 
                 line = line.split(',')
                 about.append(line[0])
-                link.append(line[1])
+                if line[1].endswith('\n'):
+                    link.append(line[1][:-1])
             else:
                 raise FileParseError(line, line_num + 1)
 
-    # for i in type_obj:
-    #     print(i)
-    # Dbtype.get_all_sites()
     return type_obj
 
 
