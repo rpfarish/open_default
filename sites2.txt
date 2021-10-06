@@ -1,0 +1,26 @@
+# Category: type: sub-type: sub-sub-type... etc.
+# {
+# Title, Nickname, Url
+# Title, Url
+# }
+
+Category: fav
+{
+    Chillstep 24/7 Music Livestream,  https://www.youtube.com/watch?v=vCdVaZlZ524
+    MyFitnessPal: Log food,           https://www.myfitnesspal.com/food/diary
+
+    Pathfinding Visualizer on GitHub, https://github.com/rpfarish/pathfinder/
+    Open Default on GitHub,           https://github.com/rpfarish/open_default
+}
+
+
+Category: searches: super_awesome
+{
+    Google,      https://www.google.com
+    YouTube, yt, https://www.youtube.com
+}
+
+{
+df.dsf/df,dfj
+,dfg,
+}
