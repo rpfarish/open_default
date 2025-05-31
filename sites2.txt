@@ -17,10 +17,17 @@ Category: fav
 Category: searches: super_awesome
 {
     Google,      https://www.google.com
-    YouTube, yt, https://www.youtube.com
+    YouTube, y, https://www.youtube.com
+hi this is a text message youtube.com ,youtube
 }
 
+Category: searches: bean
 {
-df.dsf/df,dfj
-,dfg,
+    Google, https://www.google.com/maps
 }
+
+Category: searches: maps: yt: dude: cool
+{
+    Google, https://www.youtube.com
+}
+

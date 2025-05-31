@@ -1,13 +1,14 @@
+import os
 import webbrowser
 
 source = "sites.txt"
 
 
-class Dbtype:
+class Sites:
     types = []
 
     def __init__(self, name, desc, sites):
-        Dbtype.types.append(self)
+        Sites.types.append(self)
         self.name = name
         self.desc = desc
         self.sites = sites
@@ -29,7 +30,7 @@ class Dbtype:
 
     @classmethod
     def get_sites_by_name(cls, name):
-        for i in Dbtype.types:
+        for i in Sites.types:
             if i.name == name:
                 return i.sites
         else:
@@ -73,9 +74,8 @@ def setup(file):
                 title = line[0:-2]
 
             elif '}' in line:
-                type_obj.append(Dbtype(title, about, link))
+                type_obj.append(Sites(title, about, link))
             elif ',' in line:
-
                 line = line.split(',')
                 about.append(line[0])
                 if line[1].endswith('\n'):
@@ -112,6 +112,7 @@ def call_some_none(num, sites):
     for site in num:
         webbrowser.open(sites[site][1])
 
+
 def site_help(desc, sites):
     for num, _site in enumerate(zip(desc, sites)):
         print(f"\t{num}: {_site}")
@@ -119,19 +120,18 @@ def site_help(desc, sites):
 
 def is_empty(arg):
     for a in arg:
-        if a.isspace():
-            pass
-        else:
+        if not a.isspace():
             return False
-    return True
+    else:
+        return True
 
 
 def data_in_range(nums, data):
     for i in nums:
         if int(i) >= len(data):
             return False
-
-    return True
+    else:
+        return True
 
 
 def validate_data(nums, data):
@@ -197,7 +197,6 @@ def none_type_open(objs):
     return sites_li
 
 
-
 # add functionality to search some sites
 # have help and all, take args for type and other things
 
@@ -213,9 +212,14 @@ def main_loop(objs):
             continue
         if arg == 'restart':
             print('-' * 20, 'RESTART', '-' * 20)
+            objs = setup(source)
+            continue
+        if arg == 'cls':
+            os.system('cls')
+            continue
         if arg == 'types':
             print('All available types:')
-            print('\t', ', '.join(i.name for i in Dbtype.types))
+            print('\t', ', '.join(i.name for i in Sites.types))
             continue
         if type_call := parse_help_call(arg):
             if 'all' in type_call:
@@ -234,7 +238,7 @@ def main_loop(objs):
                 print("Exits the program.")
                 continue
             elif 'type' in type_call:
-                print('type in name of the catagory you want to switch to.')
+                print('type in name of the category you want to switch to.')
                 print("If you want to go back to no type enter 'type none'")
                 continue
 
@@ -265,8 +269,8 @@ def main_loop(objs):
             print()
             continue
         elif arg == 'all':
-            print(Dbtype.get_sites_by_type())
-            call_all(Dbtype.get_sites_by_type())
+            print(Sites.get_sites_by_type())
+            call_all(Sites.get_sites_by_type())
             continue
         elif type_call := parse_type_call(arg):
             # validate
@@ -297,12 +301,12 @@ def main_loop(objs):
                 call_some_none(open_sites, site_li)
             continue
         # clean and check data
-        elif open_sites := validate_data(arg, Dbtype.get_sites_by_name(curr_type)):
+        elif open_sites := validate_data(arg, Sites.get_sites_by_name(curr_type)):
             if open_sites == -1:
                 call_error(arg, ' was not given in the correct syntax or the correct range ', "The command ")
 
             else:
-                call_some(open_sites, Dbtype.get_sites_by_name(curr_type))
+                call_some(open_sites, Sites.get_sites_by_name(curr_type))
 
         else:
             call_error(arg)

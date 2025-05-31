@@ -1,11 +1,12 @@
 fav{
 Chillstep 24/7 Music Livestream,https://www.youtube.com/watch?v=vCdVaZlZ524
 MyFitnessPal: Log food,https://www.myfitnesspal.com/food/diary
-Pathfinding Visualizer on Github,https://github.com/rpfarish/pathfinder/
-Open Default on Github,https://github.com/rpfarish/open_default
+Pathfinding Visualizer on GitHub,https://github.com/rpfarish/pathfinder/
+Open Default on GitHub,https://github.com/rpfarish/open_default
 }
 
 searches{
 Google,https://www.google.com
+YouTube,https://www.youtube.com
 }
 
